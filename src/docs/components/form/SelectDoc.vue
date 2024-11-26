@@ -1,71 +1,73 @@
 <template>
-  <div class="text-gray-900 dark:text-white">
-    <h1 class="text-3xl font-bold mb-8">Select Component</h1>
+  <div class="select-doc">
+    <h1 class="doc__title">Select Component</h1>
 
     <!-- 基本用法 -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Basic Usage</h2>
-      <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg mb-4">
-        <div class="max-w-md">
-          <MSelect
-            v-model="basicValue"
-            :options="basicOptions"
-            placeholder="Choose an option"
-          />
-          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            Selected value: {{ basicValue }}
-          </p>
+    <section class="doc__section">
+      <h2 class="doc__subtitle">Basic Usage</h2>
+      <div class="doc__example">
+        <div class="doc__example-preview">
+          <div class="max-w-md">
+            <MSelect
+              v-model="basicValue"
+              :options="basicOptions"
+              placeholder="Choose an option"
+            />
+            <p class="doc__desc">
+              Selected value: {{ basicValue }}
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="mt-4">
-        <MCode language="vue">{{ basicUsageCode }}</MCode>
+        <div class="doc__example-code">
+          <MCode language="vue">{{ basicUsageCode }}</MCode>
+        </div>
       </div>
     </section>
 
     <!-- API -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">API</h2>
+    <section class="doc__section">
+      <h2 class="doc__subtitle">API</h2>
       
-      <h3 class="text-xl font-medium mb-3">Props</h3>
+      <h3 class="doc__subtitle-sub">Props</h3>
       <div class="overflow-x-auto">
         <div class="inline-block min-w-full align-middle">
-          <table class="w-full mb-8">
-            <thead class="bg-gray-50 dark:bg-gray-800">
+          <table class="doc__table">
+            <thead>
               <tr>
-                <th class="px-4 py-2 text-left">Name</th>
-                <th class="px-4 py-2 text-left">Type</th>
-                <th class="px-4 py-2 text-left">Default</th>
-                <th class="px-4 py-2 text-left">Description</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-              <tr v-for="prop in props" :key="prop.name" class="bg-white dark:bg-gray-900">
-                <td class="px-4 py-2">{{ prop.name }}</td>
-                <td class="px-4 py-2"><code class="bg-gray-100 dark:bg-gray-800 px-1 rounded text-gray-800 dark:text-gray-200">{{ prop.type }}</code></td>
-                <td class="px-4 py-2"><code class="bg-gray-100 dark:bg-gray-800 px-1 rounded text-gray-800 dark:text-gray-200">{{ prop.default }}</code></td>
-                <td class="px-4 py-2">{{ prop.description }}</td>
+            <tbody>
+              <tr v-for="prop in props" :key="prop.name">
+                <td>{{ prop.name }}</td>
+                <td><code>{{ prop.type }}</code></td>
+                <td><code>{{ prop.default }}</code></td>
+                <td>{{ prop.description }}</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <h3 class="text-xl font-medium mb-3">Events</h3>
+      <h3 class="doc__subtitle-sub">Events</h3>
       <div class="overflow-x-auto">
         <div class="inline-block min-w-full align-middle">
-          <table class="w-full">
-            <thead class="bg-gray-50 dark:bg-gray-800">
+          <table class="doc__table">
+            <thead>
               <tr>
-                <th class="px-4 py-2 text-left">Name</th>
-                <th class="px-4 py-2 text-left">Parameters</th>
-                <th class="px-4 py-2 text-left">Description</th>
+                <th>Name</th>
+                <th>Parameters</th>
+                <th>Description</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-              <tr v-for="event in events" :key="event.name" class="bg-white dark:bg-gray-900">
-                <td class="px-4 py-2">{{ event.name }}</td>
-                <td class="px-4 py-2"><code class="bg-gray-100 dark:bg-gray-800 px-1 rounded text-gray-800 dark:text-gray-200">{{ event.parameters }}</code></td>
-                <td class="px-4 py-2">{{ event.description }}</td>
+            <tbody>
+              <tr v-for="event in events" :key="event.name">
+                <td>{{ event.name }}</td>
+                <td><code>{{ event.parameters }}</code></td>
+                <td>{{ event.description }}</td>
               </tr>
             </tbody>
           </table>
@@ -74,87 +76,95 @@
     </section>
 
     <!-- Examples -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Examples</h2>
+    <section class="doc__section">
+      <h2 class="doc__subtitle">Examples</h2>
 
       <!-- Multiple Selection -->
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">Multiple Selection</h2>
-        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg mb-4">
-          <div class="max-w-md">
-            <MSelect
-              v-model="multiValue"
-              :options="basicOptions"
-              multiple
-              placeholder="Choose multiple options"
-            />
-            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-              Selected values: {{ multiValue }}
-            </p>
+      <section class="doc__section">
+        <h2 class="doc__subtitle">Multiple Selection</h2>
+        <div class="doc__example">
+          <div class="doc__example-preview">
+            <div class="max-w-md">
+              <MSelect
+                v-model="multiValue"
+                :options="basicOptions"
+                multiple
+                placeholder="Choose multiple options"
+              />
+              <p class="doc__desc">
+                Selected values: {{ multiValue }}
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="mt-4">
-          <MCode language="vue">{{ multipleCode }}</MCode>
+          <div class="doc__example-code">
+            <MCode language="vue">{{ multipleCode }}</MCode>
+          </div>
         </div>
       </section>
 
       <!-- Searchable -->
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">Searchable</h2>
-        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg mb-4">
-          <div class="max-w-md">
-            <MSelect
-              v-model="searchValue"
-              :options="searchOptions"
-              searchable
-              placeholder="Search and select"
-            />
-            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-              Selected value: {{ searchValue }}
-            </p>
+      <section class="doc__section">
+        <h2 class="doc__subtitle">Searchable</h2>
+        <div class="doc__example">
+          <div class="doc__example-preview">
+            <div class="max-w-md">
+              <MSelect
+                v-model="searchValue"
+                :options="searchOptions"
+                searchable
+                placeholder="Search and select"
+              />
+              <p class="doc__desc">
+                Selected value: {{ searchValue }}
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="mt-4">
-          <MCode language="vue">{{ searchableCode }}</MCode>
+          <div class="doc__example-code">
+            <MCode language="vue">{{ searchableCode }}</MCode>
+          </div>
         </div>
       </section>
 
       <!-- Remote Search -->
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">Remote Search</h2>
-        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg mb-4">
-          <div class="max-w-md">
-            <MSelect
-              v-model="remoteValue"
-              :options="remoteOptions"
-              searchable
-              :loading="loading"
-              remote
-              @search="handleRemoteSearch"
-              placeholder="Type to search remotely"
-            />
+      <section class="doc__section">
+        <h2 class="doc__subtitle">Remote Search</h2>
+        <div class="doc__example">
+          <div class="doc__example-preview">
+            <div class="max-w-md">
+              <MSelect
+                v-model="remoteValue"
+                :options="remoteOptions"
+                searchable
+                :loading="loading"
+                remote
+                @search="handleRemoteSearch"
+                placeholder="Type to search remotely"
+              />
+            </div>
           </div>
-        </div>
-        <div class="mt-4">
-          <MCode language="vue">{{ remoteSearchCode }}</MCode>
+          <div class="doc__example-code">
+            <MCode language="vue">{{ remoteSearchCode }}</MCode>
+          </div>
         </div>
       </section>
 
       <!-- Disabled State -->
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">Disabled State</h2>
-        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg mb-4">
-          <div class="max-w-md">
-            <MSelect
-              v-model="disabledValue"
-              :options="basicOptions"
-              disabled
-              placeholder="Disabled select"
-            />
+      <section class="doc__section">
+        <h2 class="doc__subtitle">Disabled State</h2>
+        <div class="doc__example">
+          <div class="doc__example-preview">
+            <div class="max-w-md">
+              <MSelect
+                v-model="disabledValue"
+                :options="basicOptions"
+                disabled
+                placeholder="Disabled select"
+              />
+            </div>
           </div>
-        </div>
-        <div class="mt-4">
-          <MCode language="vue">{{ disabledCode }}</MCode>
+          <div class="doc__example-code">
+            <MCode language="vue">{{ disabledCode }}</MCode>
+          </div>
         </div>
       </section>
     </section>
@@ -405,3 +415,11 @@ const handleRemoteSearch = async (query) => {
   loading.value = false
 }
 </script>
+
+<style lang="less">
+@import '../../../docs/styles/doc.less';
+
+.select-doc {
+  .doc;
+}
+</style>

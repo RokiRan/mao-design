@@ -1,0 +1,114 @@
+// 文档样式变量
+:root {
+  // 浅色模式变量
+  --doc-text-color: #333;
+  --doc-text-color-secondary: #666;
+  --doc-bg-color: #fff;
+  --doc-bg-color-secondary: #f5f7fa;
+  --doc-border-color: #e4e7ed;
+  --doc-code-bg: #f8f9fa;
+  --doc-code-text: #476582;
+}
+
+.dark {
+  // 深色模式变量
+  --doc-text-color: #fff;
+  --doc-text-color-secondary: #ccc;
+  --doc-bg-color: #1a1a1a;
+  --doc-bg-color-secondary: #242424;
+  --doc-border-color: #434343;
+  --doc-code-bg: #2d2d2d;
+  --doc-code-text: #a8b6c2;
+}
+
+// 文档基础样式
+.doc {
+  color: var(--doc-text-color);
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: var(--doc-text-color);
+  }
+
+  &__subtitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 2rem 0 1rem;
+    color: var(--doc-text-color);
+  }
+
+  &__subtitle-sub {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 1.5rem 0 1rem;
+    color: var(--doc-text-color);
+  }
+
+  &__desc {
+    font-size: 1rem;
+    color: var(--doc-text-color-secondary);
+    margin-bottom: 2rem;
+  }
+
+  &__section {
+    margin-bottom: 3rem;
+  }
+
+  &__example {
+    border: 1px solid var(--doc-border-color);
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+    background-color: var(--doc-bg-color);
+
+    &-preview {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--doc-border-color);
+    }
+
+    &-code {
+      background-color: var(--doc-code-bg);
+      padding: 1rem;
+      border-radius: 0 0 0.5rem 0.5rem;
+    }
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 2rem;
+    color: var(--doc-text-color);
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border: 1px solid var(--doc-border-color);
+    }
+
+    th {
+      background-color: var(--doc-bg-color-secondary);
+      font-weight: 500;
+    }
+
+    td {
+      color: var(--doc-text-color-secondary);
+    }
+
+    code {
+      background-color: var(--doc-code-bg);
+      color: var(--doc-code-text);
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      font-family: monospace;
+    }
+  }
+
+  &__code {
+    background-color: var(--doc-code-bg);
+    color: var(--doc-code-text);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: monospace;
+  }
+}

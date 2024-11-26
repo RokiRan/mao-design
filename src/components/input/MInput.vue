@@ -5,56 +5,111 @@
       :type="type"
       :placeholder="placeholder"
       :disabled="disabled"
-      class="w-full px-3 py-2 border rounded-md outline-none transition-colors text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+      class="m-input"
       :class="[
-        error ? 'border-red-500 focus:border-red-500' : 'border-gray-300 dark:border-gray-600 focus:border-blue-500',
-        disabled ? 'bg-gray-100 dark:bg-gray-700 cursor-not-allowed text-gray-500 dark:text-gray-400' : 'bg-white dark:bg-gray-800'
+        error ? 'is-error' : '',
+        disabled ? 'is-disabled' : '',
+        size
       ]"
       @input="handleInput"
     >
-    <p v-if="error" class="mt-1 text-sm text-red-500 dark:text-red-400">{{ error }}</p>
+    <p v-if="error" class="m-input__error">{{ error }}</p>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import type { InputProps, InputEvents } from '../../types/components'
+<script setup lang="ts">
+interface Props {
+  modelValue: string | number
+  type?: string
+  placeholder?: string
+  disabled?: boolean
+  error?: string
+  size?: 'small' | 'medium' | 'large'
+}
 
-export default defineComponent({
-  name: 'MInput',
-  props: {
-    modelValue: {
-      type: [String, Number],
-      required: true
-    },
-    type: {
-      type: String,
-      default: 'text'
-    },
-    placeholder: {
-      type: String,
-      default: ''
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    error: {
-      type: String,
-      default: ''
-    }
-  } as const,
-  emits: ['update:modelValue', 'input'],
-  setup(props, { emit }) {
-    const handleInput = (event: Event) => {
-      const target = event.target as HTMLInputElement
-      emit('update:modelValue', target.value)
-      emit('input', event)
-    }
+const props = withDefaults(defineProps<Props>(), {
+  type: 'text',
+  placeholder: '',
+  disabled: false,
+  error: '',
+  size: 'medium'
+})
 
-    return {
-      handleInput
+const emit = defineEmits<{
+  'update:modelValue': [value: string | number]
+  'input': [event: Event]
+}>()
+
+const handleInput = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  emit('update:modelValue', target.value)
+  emit('input', event)
+}
+</script>
+
+<style lang="less">
+.m-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  outline: none;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.2s ease;
+
+  &::placeholder {
+    color: var(--text-color-disabled);
+  }
+
+  &:hover:not(:disabled) {
+    border-color: var(--border-color-hover);
+  }
+
+  &:focus:not(:disabled) {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-color-20);
+  }
+
+  &.is-error {
+    border-color: var(--error-color);
+
+    &:focus {
+      border-color: var(--error-color);
+      box-shadow: 0 0 0 2px var(--error-color-20);
     }
   }
-})
-</script>
+
+  &.is-disabled {
+    background-color: var(--bg-color-disabled);
+    color: var(--text-color-disabled);
+    cursor: not-allowed;
+
+    &::placeholder {
+      color: var(--text-color-disabled);
+    }
+  }
+
+  // 尺寸变体
+  &.small {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  &.medium {
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+  }
+
+  &.large {
+    padding: 0.75rem 1rem;
+    font-size: 1.125rem;
+  }
+}
+
+.m-input__error {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--error-color);
+}
+</style>

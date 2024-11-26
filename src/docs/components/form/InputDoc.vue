@@ -1,70 +1,72 @@
 <template>
-  <div class="text-gray-900 dark:text-white">
-    <h1 class="text-3xl font-bold mb-8">Input Component</h1>
+  <div class="input-doc">
+    <h1 class="doc__title">Input Component</h1>
 
     <!-- 基本用法 -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Basic Usage</h2>
-      <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg mb-4">
-        <div class="max-w-md">
-          <MInput
-            v-model="basicInput"
-            placeholder="Basic input example"
-          />
-          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            Value: {{ basicInput }}
-          </p>
+    <section class="doc__section">
+      <h2 class="doc__subtitle">Basic Usage</h2>
+      <div class="doc__example">
+        <div class="doc__example-preview">
+          <div class="max-w-md">
+            <MInput
+              v-model="basicInput"
+              placeholder="Basic input example"
+            />
+            <p class="doc__desc">
+              Value: {{ basicInput }}
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="mt-4">
-        <MCode language="vue">{{ basicUsageCode }}</MCode>
+        <div class="doc__example-code">
+          <MCode language="vue">{{ basicUsageCode }}</MCode>
+        </div>
       </div>
     </section>
 
     <!-- API -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">API</h2>
+    <section class="doc__section">
+      <h2 class="doc__subtitle">API</h2>
       
-      <h3 class="text-xl font-medium mb-3">Props</h3>
+      <h3 class="doc__subtitle-sub">Props</h3>
       <div class="overflow-x-auto">
         <div class="inline-block min-w-full align-middle">
-          <table class="w-full mb-8">
-            <thead class="bg-gray-50 dark:bg-gray-800">
+          <table class="doc__table">
+            <thead>
               <tr>
-                <th class="px-4 py-2 text-left">Name</th>
-                <th class="px-4 py-2 text-left">Type</th>
-                <th class="px-4 py-2 text-left">Default</th>
-                <th class="px-4 py-2 text-left">Description</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-              <tr v-for="prop in props" :key="prop.name" class="bg-white dark:bg-gray-900">
-                <td class="px-4 py-2">{{ prop.name }}</td>
-                <td class="px-4 py-2"><code class="bg-gray-100 dark:bg-gray-800 px-1 rounded text-gray-800 dark:text-gray-200">{{ prop.type }}</code></td>
-                <td class="px-4 py-2"><code class="bg-gray-100 dark:bg-gray-800 px-1 rounded text-gray-800 dark:text-gray-200">{{ prop.default }}</code></td>
-                <td class="px-4 py-2">{{ prop.description }}</td>
+            <tbody>
+              <tr v-for="prop in props" :key="prop.name">
+                <td>{{ prop.name }}</td>
+                <td><code>{{ prop.type }}</code></td>
+                <td><code>{{ prop.default }}</code></td>
+                <td>{{ prop.description }}</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <h3 class="text-xl font-medium mb-3">Events</h3>
+      <h3 class="doc__subtitle-sub">Events</h3>
       <div class="overflow-x-auto">
         <div class="inline-block min-w-full align-middle">
-          <table class="w-full">
-            <thead class="bg-gray-50 dark:bg-gray-800">
+          <table class="doc__table">
+            <thead>
               <tr>
-                <th class="px-4 py-2 text-left">Name</th>
-                <th class="px-4 py-2 text-left">Parameters</th>
-                <th class="px-4 py-2 text-left">Description</th>
+                <th>Name</th>
+                <th>Parameters</th>
+                <th>Description</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-              <tr v-for="event in events" :key="event.name" class="bg-white dark:bg-gray-900">
-                <td class="px-4 py-2">{{ event.name }}</td>
-                <td class="px-4 py-2"><code class="bg-gray-100 dark:bg-gray-800 px-1 rounded text-gray-800 dark:text-gray-200">{{ event.parameters }}</code></td>
-                <td class="px-4 py-2">{{ event.description }}</td>
+            <tbody>
+              <tr v-for="event in events" :key="event.name">
+                <td>{{ event.name }}</td>
+                <td><code>{{ event.parameters }}</code></td>
+                <td>{{ event.description }}</td>
               </tr>
             </tbody>
           </table>
@@ -73,58 +75,64 @@
     </section>
 
     <!-- Examples -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Examples</h2>
+    <section class="doc__section">
+      <h2 class="doc__subtitle">Examples</h2>
 
       <!-- Error State -->
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">Error State</h2>
-        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg mb-4">
-          <div class="max-w-md">
-            <MInput
-              v-model="errorInput"
-              :error="errorMessage"
-              placeholder="Enter email"
-            />
+      <section class="doc__section">
+        <h2 class="doc__subtitle">Error State</h2>
+        <div class="doc__example">
+          <div class="doc__example-preview">
+            <div class="max-w-md">
+              <MInput
+                v-model="errorInput"
+                :error="errorMessage"
+                placeholder="Enter email"
+              />
+            </div>
           </div>
-        </div>
-        <div class="mt-4">
-          <MCode language="vue">{{ errorCode }}</MCode>
+          <div class="doc__example-code">
+            <MCode language="vue">{{ errorCode }}</MCode>
+          </div>
         </div>
       </section>
 
       <!-- Disabled State -->
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">Disabled State</h2>
-        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg mb-4">
-          <div class="max-w-md">
-            <MInput
-              v-model="disabledInput"
-              placeholder="Disabled input"
-              disabled
-            />
+      <section class="doc__section">
+        <h2 class="doc__subtitle">Disabled State</h2>
+        <div class="doc__example">
+          <div class="doc__example-preview">
+            <div class="max-w-md">
+              <MInput
+                v-model="disabledInput"
+                placeholder="Disabled input"
+                disabled
+              />
+            </div>
           </div>
-        </div>
-        <div class="mt-4">
-          <MCode language="vue">{{ disabledCode }}</MCode>
+          <div class="doc__example-code">
+            <MCode language="vue">{{ disabledCode }}</MCode>
+          </div>
         </div>
       </section>
 
       <!-- Different Types -->
       <div>
-        <h3 class="text-lg font-medium mb-2">Input Types</h3>
-        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg mb-4">
-          <div class="max-w-md space-y-4">
-            <MInput
-              v-model="passwordInput"
-              type="password"
-              placeholder="Password input"
-            />
-            <MInput
-              v-model="numberInput"
-              type="number"
-              placeholder="Number input"
-            />
+        <h3 class="doc__subtitle-sub">Input Types</h3>
+        <div class="doc__example">
+          <div class="doc__example-preview">
+            <div class="max-w-md space-y-4">
+              <MInput
+                v-model="passwordInput"
+                type="password"
+                placeholder="Password input"
+              />
+              <MInput
+                v-model="numberInput"
+                type="number"
+                placeholder="Number input"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -238,3 +246,11 @@ const events = [
   }
 ]
 </script>
+
+<style lang="less">
+@import '../../../docs/styles/doc.less';
+
+.input-doc {
+  .doc;
+}
+</style>
