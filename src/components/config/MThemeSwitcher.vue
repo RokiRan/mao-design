@@ -1,5 +1,5 @@
 <template>
-  <div class="m-theme-switcher">
+  <div class="m-theme-switcher" @mouseleave="hideMenuDelayed">
     <!-- 主显示区域 -->
     <div 
       class="m-theme-switcher__display" 
@@ -22,7 +22,6 @@
     <div 
       v-show="isMenuVisible" 
       class="m-theme-switcher__menu"
-      @mouseleave="hideMenuDelayed"
       @mouseenter="cancelHideMenu"
     >
       <div class="m-theme-switcher__presets">
@@ -51,14 +50,14 @@
 <script setup lang="ts">
 import { inject, ref } from 'vue'
 import { presets } from './presets'
-import type { ThemeConfig, ThemeContext } from './types'
+import type { ThemeContext } from './types'
 
 const theme = inject<ThemeContext>('theme')
 if (!theme) {
   throw new Error('MThemeSwitcher must be used within MConfig')
 }
 
-const { isDark, toggleDarkMode, changePreset, currentPreset } = theme
+const { changePreset, currentPreset } = theme
 const isMenuVisible = ref(false)
 let hideMenuTimeout: NodeJS.Timeout | null = null
 

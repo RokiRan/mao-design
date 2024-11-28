@@ -7,22 +7,41 @@ import { ref, onMounted, watch, computed, useSlots, nextTick } from 'vue'
 import Prism from 'prismjs'
 // 导入 Prism 的主题样式（使用更鲜明的主题）
 import 'prismjs/themes/prism-tomorrow.css'
-// 导入所有需要的语言支持
-import 'prismjs/components/prism-typescript'
-import 'prismjs/components/prism-javascript'
+// 导入所需的语言支持
 import 'prismjs/components/prism-markup'
 import 'prismjs/components/prism-css'
-import 'prismjs/components/prism-scss'
-import 'prismjs/components/prism-less'
-import 'prismjs/components/prism-json'
-import 'prismjs/components/prism-bash'
-import 'prismjs/components/prism-markdown'
-import 'prismjs/components/prism-jsx'
-import 'prismjs/components/prism-tsx'
-import 'prismjs/components/prism-yaml'
-import 'prismjs/components/prism-docker'
-import 'prismjs/components/prism-nginx'
-// TODO: 语法高亮问题
+import 'prismjs/components/prism-javascript'
+import 'prismjs/components/prism-typescript'
+
+// 添加 Vue 语言支持
+Prism.languages.vue = {
+  'template-tag': {
+    pattern: /<template[\s\S]*?>|<\/template>/,
+    alias: 'markup'
+  },
+  'script-tag': {
+    pattern: /<script[\s\S]*?>|<\/script>/,
+    alias: 'javascript'
+  },
+  'style-tag': {
+    pattern: /<style[\s\S]*?>|<\/style>/,
+    alias: 'css'
+  },
+  // Vue 指令
+  'directive': {
+    pattern: /v-[a-z]+(?="|')/,
+    alias: 'keyword'
+  },
+  // Vue 插值语法
+  'interpolation': {
+    pattern: /{{[\s\S]*?}}/,
+    inside: {
+      'punctuation': /{{|}}/,
+      rest: Prism.languages.javascript
+    }
+  }
+}
+
 interface Props {
   language: string
   code?: string
@@ -60,14 +79,13 @@ const highlightedCode = computed(() => {
   
   try {
     // 确保语言存在
-    const lang = Prism.languages[props.language] ? props.language : 'plaintext'
+    const lang = props.language === 'vue' ? 'vue' : (Prism.languages[props.language] ? props.language : 'plaintext')
     // 手动触发 Prism 高亮
-    const highlighted = Prism.highlight(
+    return Prism.highlight(
       rawCode,
       Prism.languages[lang],
       lang
     )
-    return highlighted
   } catch (e) {
     console.warn('Prism highlight error:', e)
     return rawCode

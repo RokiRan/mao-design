@@ -15,10 +15,22 @@ export default defineConfig({
     open: true
   },
   build: {
+    lib: {
+      entry: resolve(__dirname, 'src/index.ts'),
+      name: 'MaoDesign',
+      fileName: (format) => `index.${format === 'es' ? 'js' : 'umd.cjs'}`
+    },
+    rollupOptions: {
+      external: ['vue'],
+      output: {
+        globals: {
+          vue: 'Vue'
+        }
+      }
+    },
     target: 'es2015',
     outDir: 'dist',
     assetsDir: 'assets',
-    cssCodeSplit: true,
-    sourcemap: true
+    cssCodeSplit: true
   }
 })

@@ -16,7 +16,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
+    "build:types": "vue-tsc --declaration --emitDeclarationOnly",
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage",
